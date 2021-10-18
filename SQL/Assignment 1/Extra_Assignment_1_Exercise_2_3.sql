@@ -2,12 +2,16 @@
 DROP DATABASE IF EXISTS data_types;
 CREATE DATABASE data_types;
 USE data_types;
+-- create table data types 1
+DROP TABLE IF EXISTS data_types_1;
 CREATE TABLE data_types_1(
 ID					MEDIUMINT UNSIGNED PRIMARY KEY,
 `Name`				VARCHAR(50),
 `Code`				CHAR(5),
 Modified_Date		DATETIME
 );
+-- create table data types 2
+DROP TABLE IF EXISTS data_types_2;
 CREATE TABLE data_types_2(
 ID					MEDIUMINT UNSIGNED PRIMARY KEY,
 `Name`				VARCHAR(50),
