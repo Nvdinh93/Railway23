@@ -50,16 +50,16 @@ CREATE TABLE `account`(
 );
 
 INSERT INTO `account`(email,username,fullname,department_id,position_id,create_date)
-VALUES  (N'nvdinh@gmail.com', N'nvdinh', N'nguyen van dinh', 1, 1, '2021-10-18'),
-		(N'dqh@yahoo.com', N'dqhuy', N'dương quang huy', 1, 2, '2021-10-18'),
-        (N'nva@gmail.com', N'nva', N'nguyen van a', 2, 3, '2021-10-19'),
-        (N'vnanh@edumesa.com', N'vnanh', N'vu ngoc anh', 1, 3, '2021-10-10'),
-        (N'ntnga@gmail.com', N'ntnga', N'nguyen thi nga', 5, 4, '2021-10-14'),
-        (N'ltkhang@gmail.com', N'ltkhang', N'lam thi khang', 2, 3, '2021-10-14'),
-        (N'nvb@yahoo.com', N'nvb', N'nguyen van b', 6, 4, '2021-10-14'),
-        (N'tvanh@gmail.com', N'tvanh', N'tran van anh', 7, 1, '2021-10-13'),
-        (N'tvbinh@gmail.com', N'tvbinh', N'tran van binh', 10, 2, '2021-10-13'),
-        (N'tvduc@gmail.com', N'tvduc', N'tran van duc', 9, 3, '2021-10-10');
+VALUES  (N'nvdinh@gmail.com', N'nvdinh', N'nguyen van dinh', 1, 1, '2010-10-18'),
+		(N'dqh@yahoo.com', N'dqhuy', N'dương quang huy', 1, 2, '2011-10-18'),
+        (N'nva@gmail.com', N'nva', N'nguyen van a', 2, 3, '2011-10-19'),
+        (N'vnanh@edumesa.com', N'vnanh', N'vu ngoc anh', 1, 3, '2011-10-10'),
+        (N'ntnga@gmail.com', N'ntnga', N'nguyen thi nga', 5, 4, '2012-10-14'),
+        (N'ltkhang@gmail.com', N'ltkhang', N'lam thi khang', 2, 3, '2012-10-14'),
+        (N'nvb@yahoo.com', N'nvb', N'nguyen van b', 6, 4, '2012-10-14'),
+        (N'tvanh@gmail.com', N'tvanh', N'tran van anh', 7, 1, '2013-10-13'),
+        (N'tvbinh@gmail.com', N'tvbinh', N'tran van binh', 10, 2, '2013-10-13'),
+        (N'tvduc@gmail.com', N'tvduc', N'tran van duc', 9, 3, '2013-10-10');
         
 -- create table 4: group
 DROP TABLE IF EXISTS `group`;
@@ -72,16 +72,16 @@ CREATE TABLE `group`(
 );
 
 INSERT INTO `group`(group_name,creator_id,creator_date)
-VALUES  (N'pttt', 2, '2021-10-17'),
-		(N'qlns', 4, '2021-10-19'),
-        (N'y tuong', 3, '2021-10-19'),
-        (N'thuc thi', 1, '2021-10-18'),
-        (N'quang ba', 1, '2021-10-18'),
-        (N'ky ket', 2, '2021-10-19'),
-        (N'cskh', 5, '2021-10-17'),
-        (N'xnk', 1, '2021-10-20'),
-        (N'tnykkh', 5, '2021-10-20'),
-        (N'dtnl', 4, '2021-10-17');
+VALUES  (N'pttt', 2, '2010-10-17'),
+		(N'qlns', 4, '2010-10-19'),
+        (N'y tuong', 3, '2011-10-19'),
+        (N'thuc thi', 1, '2011-10-18'),
+        (N'quang ba', 1, '2012-10-18'),
+        (N'ky ket', 2, '2012-10-19'),
+        (N'cskh', 5, '2013-10-17'),
+        (N'xnk', 1, '2013-10-20'),
+        (N'tnykkh', 5, '2014-10-20'),
+        (N'dtnl', 4, '2014-10-17');
 
 -- create table 5: group_account
 DROP TABLE IF EXISTS group_account;
@@ -94,16 +94,16 @@ CREATE TABLE group_account(
 );
 
 INSERT INTO group_account(group_id,account_id,join_date)
-VALUES   ( 1, 6, '2021-10-17'),
-		 ( 1, 7, '021-10-17'),
-         ( 2, 8, '2021-10-18'),
-         ( 2, 9, '2021-10-18'),
-         ( 3, 10, '2021-10-19'),
-         ( 3, 6, '2021-10-19'),
-         ( 4, 7, '2021-10-20'),
-         ( 4, 8, '2021-10-21'),
-		 ( 5, 9, '2021-10-21'),
-         ( 5, 10, '2021-10-22');
+VALUES   ( 1, 6, '2010-10-17'),
+		 ( 1, 7, '2011-10-17'),
+         ( 2, 8, '2012-10-18'),
+         ( 2, 9, '2013-10-18'),
+         ( 3, 10, '2014-10-19'),
+         ( 3, 6, '2015-10-19'),
+         ( 4, 7, '2016-10-20'),
+         ( 4, 8, '2017-10-21'),
+		 ( 5, 9, '2018-10-21'),
+         ( 5, 10, '2019-10-22');
 
 -- create table 6: type question
 DROP TABLE IF EXISTS type_question;
@@ -149,17 +149,17 @@ CREATE TABLE question(
     FOREIGN KEY (creator_id) REFERENCES `account`(account_id)
 );
 
-INSERT INTO question(category_id,type_id,creator_id,create_date)
-VALUES  (1,1,2,'2021-10-18'),
-		(2,1,3,'2021-10-18'),
-        (3,2,4,'2021-10-19'),
-        (4,2,5,'2021-10-20'),
-        (5,1,6,'2021-10-17'),
-        (6,1,2,'2021-10-17'),
-        (7,2,7,'2021-10-17'),
-        (7,1,7,'021-10-18'),
-        (6,2,2,'2021-10-18'),
-        (5,2,6,'2021-10-19');
+INSERT INTO question(content,category_id,type_id,creator_id,create_date)
+VALUES  (N'java la gi',1,1,2,'2011-10-18'),								
+		(N'net la gi',2,1,3,'2012-10-18'),
+        (N'sql la gi',3,2,4,'2013-10-19'),
+        (N'postman la gi',4,2,5,'2014-10-20'),
+        (N'ruby la gi',5,1,6,'2015-10-17'),
+        (N'cach tao mot trang web',6,1,2,'2015-10-17'),
+        (N'googleplay la gi',7,2,7,'2016-10-17'),
+        (N'ios la gi',8,1,7,'2017-10-18'),
+        (N'cloud la gi',9,2,2,'2017-10-18'),
+        (N'cach tao mot game',10,2,6,'2017-10-19');
 
 -- create table 9: answer
 DROP TABLE IF EXISTS answer;
@@ -198,16 +198,16 @@ CREATE TABLE exam(
 );
 
 INSERT INTO exam(`code`,category_id,duration,creator_id,create_date)
-VALUES  (N'a1',1,'00:45:00',1,'2021-10-19'),
-		(N'a2',2,'00:45:00',1,'2021-10-19'),
-        (N'b1',3,'00:45:00',3,'2021-10-18'),
-        (N'b2',4,'00:45:00',4,'2021-10-18'),
-        (N'c1',5,'00:45:00',5,'2021-10-18'),
-        (N'c2',6,'00:45:00',2,'2021-10-19'),
-        (N'd1',7,'01:00:00',3,'2021-10-19'),
-        (N'd2',1,'01:00:00',2,'2021-10-20'),
-        (N'e1',2,'01:00:00',6,'2021-10-20'),
-        (N'e2',3,'01:00:00',4,'2021-10-20');
+VALUES  (N'a1',1,'00:45:00',1,'2011-10-19'),
+		(N'a2',2,'00:45:00',1,'2011-10-19'),
+        (N'b1',3,'00:45:00',3,'2012-10-18'),
+        (N'b2',4,'00:45:00',4,'2012-10-18'),
+        (N'c1',5,'00:45:00',5,'2013-10-18'),
+        (N'c2',6,'00:45:00',2,'2013-10-19'),
+        (N'd1',7,'01:00:00',3,'2014-10-19'),
+        (N'd2',1,'01:00:00',2,'2014-10-20'),
+        (N'e1',2,'01:00:00',6,'2015-10-20'),
+        (N'e2',3,'01:00:00',4,'2015-10-20');
 
 -- create table 11: exam question
 DROP TABLE IF EXISTS exam_question;
