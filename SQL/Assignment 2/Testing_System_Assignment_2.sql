@@ -7,8 +7,8 @@ ALTER DATABASE testing_system CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 -- create table 1: department
 DROP TABLE IF EXISTS department;
 CREATE TABLE department(
-	department_id		TINYINT AUTO_INCREMENT PRIMARY KEY,
-	department_name		VARCHAR(50) CHAR SET utf8mb4 NOT NULL
+	department_id		TINYINT AUTO_INCREMENT PRIMARY KEY NOT NULL ,
+	department_name		VARCHAR(30) CHAR SET utf8mb4 NOT NULL UNIQUE KEY
 );
 INSERT INTO department(department_id,department_name)
 VALUES	(1,	N'marketing'),
@@ -25,22 +25,22 @@ VALUES	(1,	N'marketing'),
   -- create table 2: position                  
 DROP TABLE IF EXISTS `position`;
 CREATE TABLE `position`(
-	position_id		TINYINT AUTO_INCREMENT PRIMARY KEY,
-	position_name	ENUM('dev','test','scrum master','pm')
+	position_id		TINYINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	position_name	ENUM('Dev','Test','Scrum Master','Pm')
 );
 
 INSERT INTO `position`(position_name)
-VALUES  (N'dev'),
-		(N'test'),
-        (N'scrum master'),
-        (N'pm');
+VALUES  (N'Dev'),
+		(N'Test'),
+        (N'Scrum Master'),
+        (N'Pm');
         
 -- create table 3: account
 DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account`(
 	account_id		MEDIUMINT AUTO_INCREMENT PRIMARY KEY,
 	email			VARCHAR(50) UNIQUE KEY,
-	username		VARCHAR(50) UNIQUE KEY NOT NULL,
+	username		VARCHAR(20) UNIQUE KEY NOT NULL,
 	fullname		VARCHAR(50) CHAR SET utf8mb4 NOT NULL,
 	department_id	TINYINT NOT NULL,
 	position_id		TINYINT NOT NULL,
@@ -65,7 +65,7 @@ VALUES  (N'nvdinh@gmail.com', N'nvdinh', N'nguyen van dinh', 1, 1, '2010-10-18')
 DROP TABLE IF EXISTS `group`;
 CREATE TABLE `group`(
 	group_id		SMALLINT AUTO_INCREMENT PRIMARY KEY,
-	group_name		VARCHAR(50) UNIQUE KEY,
+	group_name		VARCHAR(50) UNIQUE KEY NOT NULL,
 	creator_id		MEDIUMINT,
 	creator_date	DATE,
     FOREIGN KEY (creator_id) REFERENCES `account`(account_id)
@@ -86,9 +86,10 @@ VALUES  (N'pttt', 2, '2010-10-17'),
 -- create table 5: group_account
 DROP TABLE IF EXISTS group_account;
 CREATE TABLE group_account(
-	group_id		SMALLINT,
-	account_id		MEDIUMINT,
+	group_id		SMALLINT NOT NULL,
+	account_id		MEDIUMINT NOT NULL,
 	join_date		DATE,
+    PRIMARY KEY (group_id,account_id),
     FOREIGN KEY (group_id) REFERENCES `group`(group_id),
     FOREIGN KEY (account_id) REFERENCES `account`(account_id)
 );
@@ -119,8 +120,8 @@ VALUES  (N'essay'),
 -- create table 7: category question
 DROP TABLE IF EXISTS category_question;
 CREATE TABLE category_question(
-	category_id		TINYINT AUTO_INCREMENT PRIMARY KEY,
-	category_name	VARCHAR(50) 
+	category_id		TINYINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	category_name	VARCHAR(50) UNIQUE KEY NOT NULL
 );
 
 INSERT INTO category_question(category_name)
@@ -165,55 +166,56 @@ VALUES  (N'java la gi',1,1,2,'2011-10-18'),
 DROP TABLE IF EXISTS answer;
 CREATE TABLE answer(
 	answer_id		MEDIUMINT AUTO_INCREMENT PRIMARY KEY,
-	content			VARCHAR(255) CHAR SET utf8mb4,
-	question_id		MEDIUMINT,
+	content			VARCHAR(255) CHAR SET utf8mb4 NOT NULL,
+	question_id		MEDIUMINT NOT NULL,
 	is_correct		BOOLEAN,
 	FOREIGN KEY (question_id) REFERENCES question(question_id)
 );
 
-INSERT INTO answer(question_id)
-VALUES  (1),
-		(2),
-        (3),
-        (4),
-        (5),
-        (6),
-        (7),
-        (8),
-        (9),
-        (10);
+INSERT INTO answer(content,question_id,is_correct)
+VALUES  (N'cau tra loi 1',1,1),
+		(N'cau tra loi 2',1,1),
+        (N'cau tra loi 3',1,0),
+        (N'cau tra loi 4',1,0),
+        (N'cau tra loi 5',5,0),
+        (N'cau tra loi 6',6,1),
+        (N'cau tra loi 7',7,1),
+        (N'cau tra loi 8',8,1),
+        (N'cau tra loi 9',9,1),
+        (N'cau tra loi 10',10,0);
 
 -- create table 10: exam
 DROP TABLE IF EXISTS exam;
 CREATE TABLE exam(
-	exam_id			TINYINT AUTO_INCREMENT PRIMARY KEY,
-	`code`			VARCHAR(10) NOT NULL,
-	title			VARCHAR(50) ,
-	category_id		TINYINT,
+	exam_id			TINYINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	`code`			VARCHAR(10) NOT NULL UNIQUE KEY,
+	title			VARCHAR(50) NOT NULL,
+	category_id		TINYINT NOT NULL,
 	duration		TIME NOT NULL,
-	creator_id		MEDIUMINT,
+	creator_id		MEDIUMINT NOT NULL,
 	create_date		DATE,
     FOREIGN KEY (category_id) REFERENCES category_question(category_id),
     FOREIGN KEY (creator_id) REFERENCES `account`(account_id)
 );
 
-INSERT INTO exam(`code`,category_id,duration,creator_id,create_date)
-VALUES  (N'a1',1,'00:45:00',1,'2011-10-19'),
-		(N'a2',2,'00:45:00',1,'2011-10-19'),
-        (N'b1',3,'00:45:00',3,'2012-10-18'),
-        (N'b2',4,'00:45:00',4,'2012-10-18'),
-        (N'c1',5,'00:45:00',5,'2013-10-18'),
-        (N'c2',6,'00:45:00',2,'2013-10-19'),
-        (N'd1',7,'01:00:00',3,'2014-10-19'),
-        (N'd2',1,'01:00:00',2,'2014-10-20'),
-        (N'e1',2,'01:00:00',6,'2015-10-20'),
-        (N'e2',3,'01:00:00',4,'2015-10-20');
+INSERT INTO exam(`code`,title,category_id,duration,creator_id,create_date)
+VALUES  (N'a1','title 1',1,'00:30:00',1,'2011-10-19'),
+		(N'a2','title 2',2,'00:45:00',1,'2011-10-19'),
+        (N'b1','title 3',3,'00:45:00',3,'2012-10-18'),
+        (N'b2','title 4',4,'00:45:00',4,'2012-10-18'),
+        (N'c1','title 5',5,'01:30:00',5,'2013-10-18'),
+        (N'c2','title 6',6,'01:30:00',2,'2013-10-19'),
+        (N'd1','title 7',7,'01:00:00',3,'2014-10-19'),
+        (N'd2','title 8',1,'01:00:00',2,'2014-10-20'),
+        (N'e1','title 9',2,'01:00:00',6,'2015-10-20'),
+        (N'e2','title 10',3,'01:30:00',4,'2015-10-20');
 
 -- create table 11: exam question
 DROP TABLE IF EXISTS exam_question;
 CREATE TABLE exam_question(
 	exam_id			TINYINT,
 	question_id		MEDIUMINT,
+    PRIMARY KEY (exam_id,question_id),
     FOREIGN KEY (exam_id) REFERENCES exam(exam_id),
     FOREIGN KEY (question_id) REFERENCES question(question_id)
 );
@@ -221,77 +223,11 @@ CREATE TABLE exam_question(
 INSERT INTO exam_question(exam_id,question_id)
 VALUES  (1,1),
 		(2,1),
-        (3,2),
-        (4,2),
+        (3,1),
+        (4,1),
         (5,3),
         (6,3),
         (7,4),
         (8,4),
         (9,5),
         (10,5);
-        
-         -- Question 2: lấy ra tất cả các phòng ban
-SELECT *
-FROM testing_system.department;
-
--- Question 3: lấy ra id của phòng ban "Sale"
-SELECT department_id
-FROM testing_system.department
-WHERE department_name = 'sales';
-
--- Question 4: lấy ra thông tin account có full name dài nhất
-SELECT *
-FROM testing_system.`account`
-WHERE length(fullname) = (SELECT MAX(length(fullname)) FROM testing_system.`account`);
-
--- Question 5: Lấy ra thông tin account có full name dài nhất và thuộc phòng ban có id = 3
-SELECT *
-FROM testing_system.`account`
-WHERE length(fullname) = (SELECT MAX(length(fullname)) FROM testing_system.`account`) AND department_id = 3;
-
--- Question 6: Lấy ra tên group đã tham gia trước ngày 20/12/2019
-SELECT group_name
-FROM testing_system.`group`
-WHERE creator_date < '2019-12-20';
-
--- Question 7: Lấy ra ID của question có >= 4 câu trả lời
-
--- Question 8: Lấy ra các mã đề thi có thời gian thi >= 60 phút và được tạo trước ngày 20/12/2019
-SELECT *
-FROM testing_system.exam
-WHERE duration >= '01:00:00' AND create_date < '2019-12-20';
-
--- Question 9: Lấy ra 5 group được tạo gần đây nhất
-SELECT *
-FROM testing_system.`group`
-ORDER BY creator_date DESC
-LIMIT 5;
-
--- Question 10: Đếm số nhân viên thuộc department có id = 2 ??? 
-SELECT *
-FROM testing_system.`account`;
-
--- Question 11: Lấy ra nhân viên có tên bắt đầu bằng chữ "D" và kết thúc bằng chữ "o"
-SELECT fullname
-FROM testing_system.`account`
-WHERE fullname LIKE 'D%o';
-
--- Question 12: Xóa tất cả các exam được tạo trước ngày 20/12/2019
-DELETE exam_id
-FROM testing_system.exam
-WHERE create_date < '2019-12-20';
-
--- Question 13: Xóa tất cả các question có nội dung bắt đầu bằng từ "câu hỏi"
-DELETE question_id
-FROM testing_system.question
-WHERE content LIKE 'câu hỏi%';
-
--- Question 14: Update thông tin của account có id = 5 thành tên "Nguyễn Bá Lộc" và email thành loc.nguyenba@vti.com.vn
-SELECT *
-FROM testing_system.`account`;
-UPDATE `account`
-SET  fullname = 'Nguyễn Bá Lộc',
-	 email = 'thanhloc.nguyen@vti.com.vn'
-WHERE `account` = 5;
-
--- Question 15: update account có id = 5 sẽ thuộc group có id = 4 ???
