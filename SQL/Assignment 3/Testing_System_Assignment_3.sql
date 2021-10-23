@@ -54,7 +54,6 @@ FROM testing_system.`account`
 WHERE fullname LIKE 'D%o';
 
 -- Question 12: Xóa tất cả các exam được tạo trước ngày 20/12/2019
-SET FOREIGN_KEY_CHECKS=0;
 SELECT * 
 FROM testing_system.exam;                       
 DELETE  

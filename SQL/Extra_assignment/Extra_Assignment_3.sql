@@ -15,7 +15,7 @@ VALUES  (N'nguyễn văn a','1993-01-01',N'male','10','11','12','a1','danh gia 1
         (N'trần văn e','1994-04-05',N'male','19','19','49','a5','danh gia 7','tve');
         
 -- Question 2: Query all the trainees who is passed the entry test, group them into different birth months
-SELECT *,group_concat(birth_date) AS 'group_theo_thang'
+SELECT group_concat(full_name) AS 'group_theo_thang_sinh',month(birth_date)
 FROM trainee
 GROUP BY month(birth_date);
 

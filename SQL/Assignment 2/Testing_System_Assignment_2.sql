@@ -95,9 +95,18 @@ CREATE TABLE group_account(
 );
 
 INSERT INTO group_account(group_id,account_id,join_date)
-VALUES   ( 1, 6, '2010-10-17'),
-		 ( 1, 7, '2011-10-17'),
-         ( 2, 8, '2012-10-18'),
+VALUES   ( 1, 5, '2010-10-17'),
+		 ( 1, 1, '2011-10-17'),
+         ( 1, 2, '2011-10-17'),
+         ( 1, 3, '2011-10-17'),
+         ( 1, 4, '2011-10-17'),
+         ( 1, 7, '2011-10-17'),
+         ( 2, 1, '2012-10-18'),
+         ( 2, 2, '2013-10-18'),
+         ( 2, 3, '2013-10-18'),
+         ( 2, 4, '2013-10-18'),
+         ( 2, 5, '2013-10-18'),
+         ( 2, 8, '2013-10-18'),
          ( 2, 9, '2013-10-18'),
          ( 3, 10, '2014-10-19'),
          ( 3, 6, '2015-10-19'),
@@ -151,7 +160,7 @@ CREATE TABLE question(
 );
 
 INSERT INTO question(content,category_id,type_id,creator_id,create_date)
-VALUES  (N'java la gi',1,1,2,'2011-10-18'),								
+VALUES  (N'câu hỏi java la gi',1,1,2,'2011-10-18'),								
 		(N'net la gi',2,1,3,'2012-10-18'),
         (N'sql la gi',3,2,4,'2013-10-19'),
         (N'postman la gi',4,2,5,'2014-10-20'),
@@ -169,7 +178,7 @@ CREATE TABLE answer(
 	content			VARCHAR(255) CHAR SET utf8mb4 NOT NULL,
 	question_id		MEDIUMINT NOT NULL,
 	is_correct		BOOLEAN,
-	FOREIGN KEY (question_id) REFERENCES question(question_id)
+	FOREIGN KEY (question_id) REFERENCES question(question_id) ON DELETE CASCADE
 );
 
 INSERT INTO answer(content,question_id,is_correct)
@@ -216,8 +225,8 @@ CREATE TABLE exam_question(
 	exam_id			TINYINT,
 	question_id		MEDIUMINT,
     PRIMARY KEY (exam_id,question_id),
-    FOREIGN KEY (exam_id) REFERENCES exam(exam_id),
-    FOREIGN KEY (question_id) REFERENCES question(question_id)
+    FOREIGN KEY (exam_id) REFERENCES exam(exam_id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES question(question_id) ON DELETE CASCADE
 );
 
 INSERT INTO exam_question(exam_id,question_id)
