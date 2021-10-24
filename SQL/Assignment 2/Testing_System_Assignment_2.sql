@@ -52,12 +52,12 @@ CREATE TABLE `account`(
 INSERT INTO `account`(email,username,fullname,department_id,position_id,create_date)
 VALUES  (N'nvdinh@gmail.com', N'nvdinh', N'nguyen van dinh', 1, 1, '2010-10-18'),
 		(N'dqh@yahoo.com', N'dqhuy', N'dương quang huy', 1, 2, '2011-10-18'),
-        (N'nva@gmail.com', N'nva', N'nguyen van a', 2, 3, '2011-10-19'),
+        (N'nva@gmail.com', N'nva', N'nguyen van a', 1, 3, '2011-10-19'),
         (N'vnanh@edumesa.com', N'vnanh', N'vu ngoc anh', 1, 3, '2011-10-10'),
         (N'ntnga@gmail.com', N'ntnga', N'nguyen thi nga', 5, 4, '2012-10-14'),
         (N'ltkhang@gmail.com', N'ltkhang', N'lam thi khang', 2, 3, '2012-10-14'),
         (N'nvb@yahoo.com', N'nvb', N'nguyen van b', 6, 4, '2012-10-14'),
-        (N'tvanh@gmail.com', N'tvanh', N'tran van anh', 7, 1, '2013-10-13'),
+        (N'tvanh@gmail.com', N'tvanh', N'tran van anh', 7, 4, '2013-10-13'),
         (N'tvbinh@gmail.com', N'tvbinh', N'tran van binh', 10, 2, '2013-10-13'),
         (N'tvduc@gmail.com', N'tvduc', N'tran van duc', 9, 3, '2013-10-10');
         
@@ -161,7 +161,7 @@ CREATE TABLE question(
 
 INSERT INTO question(content,category_id,type_id,creator_id,create_date)
 VALUES  (N'câu hỏi java la gi',1,1,2,'2011-10-18'),								
-		(N'net la gi',2,1,3,'2012-10-18'),
+		(N'cau hoi java 2',1,2,3,'2012-10-18'),
         (N'sql la gi',3,2,4,'2013-10-19'),
         (N'postman la gi',4,2,5,'2014-10-20'),
         (N'ruby la gi',5,1,6,'2015-10-17'),
