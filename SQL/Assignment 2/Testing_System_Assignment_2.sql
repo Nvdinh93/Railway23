@@ -12,7 +12,7 @@ CREATE TABLE department(
 );
 INSERT INTO department(department_id,department_name)
 VALUES	(1,	N'marketing'),
-		(2,	N'sales'),
+		(2,	N'sale'),
 		(3,	N'Bảo vệ'),
 		(4,	N'nhân sự'),
 		(5,	N'kỹ thuật'),
@@ -50,11 +50,11 @@ CREATE TABLE `account`(
 );
 
 INSERT INTO `account`(email,username,fullname,department_id,position_id,create_date)
-VALUES  (N'nvdinh@gmail.com', N'nvdinh', N'nguyen van dinh', 1, 1, '2010-10-18'),
+VALUES  (N'nvdinh@gmail.com', N'nvdinh', N'Nguyễn van dinh', 1, 1, '2010-10-18'),
 		(N'dqh@yahoo.com', N'dqhuy', N'dương quang huy', 1, 2, '2011-10-18'),
-        (N'nva@gmail.com', N'nva', N'nguyen van a', 1, 3, '2011-10-19'),
+        (N'nva@gmail.com', N'nva', N'Nguyễn van a', 1, 3, '2011-10-19'),
         (N'vnanh@edumesa.com', N'vnanh', N'vu ngoc anh', 1, 3, '2011-10-10'),
-        (N'ntnga@gmail.com', N'ntnga', N'nguyen thi nga', 5, 4, '2012-10-14'),
+        (N'ntnga@gmail.com', N'ntnga', N'Nguyễn thi nga', 5, 4, '2012-10-14'),
         (N'ltkhang@gmail.com', N'ltkhang', N'lam thi khang', 2, 3, '2012-10-14'),
         (N'nvb@yahoo.com', N'nvb', N'nguyen van b', 6, 4, '2012-10-14'),
         (N'tvanh@gmail.com', N'tvanh', N'tran van anh', 7, 4, '2013-10-13'),
