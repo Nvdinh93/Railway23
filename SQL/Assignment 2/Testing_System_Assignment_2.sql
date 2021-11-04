@@ -12,13 +12,13 @@ CREATE TABLE department(
 );
 INSERT INTO department(department_id,department_name)
 VALUES	(1,	N'marketing'),
-		(2,	N'sale'),
+		(2,	N'Sales'),
 		(3,	N'Bảo vệ'),
 		(4,	N'nhân sự'),
 		(5,	N'kỹ thuật'),
 		(6,	N'tài chính'),
 		(7,	N'phó giám đốc'),
-		(8,	N'giám đốc'),
+		(8,	N'phong cho'),
 		(9,	N'thư ký'),
 		(10,N'bán hàng');
         
@@ -42,7 +42,7 @@ CREATE TABLE `account`(
 	email			VARCHAR(50) UNIQUE KEY,
 	username		VARCHAR(20) UNIQUE KEY NOT NULL,
 	fullname		VARCHAR(50) CHAR SET utf8mb4 NOT NULL,
-	department_id	TINYINT NOT NULL,
+	department_id	TINYINT ,
 	position_id		TINYINT NOT NULL,
 	create_date		DATE,
     FOREIGN KEY (department_id) REFERENCES department(department_id),
@@ -90,8 +90,8 @@ CREATE TABLE group_account(
 	account_id		MEDIUMINT NOT NULL,
 	join_date		DATE,
     PRIMARY KEY (group_id,account_id),
-    FOREIGN KEY (group_id) REFERENCES `group`(group_id),
-    FOREIGN KEY (account_id) REFERENCES `account`(account_id)
+    FOREIGN KEY (group_id) REFERENCES `group`(group_id) ON UPDATE CASCADE,
+    FOREIGN KEY (account_id) REFERENCES `account`(account_id) ON UPDATE CASCADE
 );
 
 INSERT INTO group_account(group_id,account_id,join_date)
@@ -160,7 +160,7 @@ CREATE TABLE question(
 );
 
 INSERT INTO question(content,category_id,type_id,creator_id,create_date)
-VALUES  (N'câu hỏi java la gi',1,1,2,'2011-10-18'),								
+VALUES  (N'câu hỏi java la gi',1,1,2,'2021-10-18'),								
 		(N'cau hoi java 2',1,2,3,'2012-10-18'),
         (N'sql la gi',3,2,4,'2013-10-19'),
         (N'postman la gi',4,2,5,'2014-10-20'),
@@ -169,7 +169,7 @@ VALUES  (N'câu hỏi java la gi',1,1,2,'2011-10-18'),
         (N'googleplay la gi',7,2,7,'2016-10-17'),
         (N'ios la gi',8,1,7,'2017-10-18'),
         (N'cloud la gi',9,2,2,'2017-10-18'),
-        (N'cach tao mot game',10,2,6,'2017-10-19');
+        (N'cach tao mot game',10,2,6,'2021-10-19');
 
 -- create table 9: answer
 DROP TABLE IF EXISTS answer;
